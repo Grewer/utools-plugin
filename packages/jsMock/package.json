@@ -1,0 +1,20 @@
+{
+  "name": "jsmock",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^2.5.1",
+    "vite-plugin-solid": "^2.0.3"
+  },
+  "dependencies": {
+    "milligram": "^1.4.1",
+    "solid-js": "^1.1.1"
+  }
+}

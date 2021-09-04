@@ -1,0 +1,17 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "@grewer/eslint": "^0.1.1",
+    "lerna": "^4.0.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true
+    },
+    "extends": [
+      "@grewer"
+    ]
+  },
+  "prettier": "@grewer/eslint-config/.prettierrc.js"
+}
