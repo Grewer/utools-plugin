@@ -1,33 +1,29 @@
-.App {
-  text-align: center;
+.button-blue {
+  background-color: #02a3fa;
+  border-color: #02a3fa;
 }
 
-.logo {
-  animation: logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.button-blue.button-clear,
+.button-blue.button-outline {
+  background-color: transparent;
+  color: #02a3fa;
 }
 
-.header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.button-blue.button-clear {
+  border-color: transparent;
 }
 
-.link {
-  color: #b318f0;
+input[type='color']:focus, input[type='date']:focus, input[type='datetime']:focus, input[type='datetime-local']:focus, input[type='email']:focus, input[type='month']:focus, input[type='number']:focus, input[type='password']:focus, input[type='search']:focus, input[type='tel']:focus, input[type='text']:focus, input[type='url']:focus, input[type='week']:focus, input:not([type]):focus, textarea:focus, select:focus {
+  border-color: #02a3fa;
+  outline: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.title {
+  margin: 20px 0 20px 0;
+}
+
+#transform {
+  margin-bottom: 20px;
+  width: 100%;
 }
