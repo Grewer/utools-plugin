@@ -1,8 +1,8 @@
 function debounce(func, wait) {
   let timer
-  return function () {
+  return function (...args) {
     let context = this
-    let args = arguments // arguments中存着e，这个e就是onscroll事件的参数
+     // arguments中存着e，这个e就是onscroll事件的参数
 
     if (timer) clearTimeout(timer)
 
