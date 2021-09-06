@@ -7,4 +7,7 @@ export default defineConfig({
     target: 'esnext',
     polyfillDynamicImport: false,
   },
+  assetsInclude: ['logo', 'plugin.json'],
+  publicDir: './src/assets/',
+  base: './'
 })
