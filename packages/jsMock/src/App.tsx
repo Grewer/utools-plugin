@@ -61,7 +61,7 @@ const App: Component = () => {
   return (
     <div class="container">
       <div className="row">
-        <button onClick={formatHandle} class="button button-clear">格式化</button>
+        <button onClick={formatHandle} class="button button-clear">格式化输入框</button>
         <button onClick={resetHandle} class="button button-clear">重置</button>
         <button onClick={copy} class="button button-clear">复制结果</button>
       </div>
@@ -73,6 +73,82 @@ const App: Component = () => {
         </div>
         <div class="column column-50">
           <textarea readOnly value={result()}/>
+        </div>
+      </div>
+      <h5>
+        常用 mock 模板:
+      </h5>
+      <div className="row">
+        <div className="column">
+          <ul>
+            <li>
+              布尔值
+              <code>
+                @boolean()
+              </code>
+            </li>
+            <li>
+              整数
+              <code>
+                @integer(60, 100)
+              </code>
+            </li>
+            <li>
+              长度字符串
+              <code>
+                @string(5)
+              </code>
+            </li>
+          </ul>
+        </div>
+        <div className="column">
+          <ul>
+            <li>
+              日期
+              <code>
+                @date()
+              </code>
+            </li>
+            <li>时间
+              <code>@time()</code>
+            </li>
+            <li>日期时间
+              <code>@datetime()</code>
+            </li>
+          </ul>
+        </div>
+        <div className="column">
+          <ul>
+            <li>图片 <code>
+              Mock.Random.image()
+            </code></li>
+            <li>语句
+            <code>
+              @csentence(3, 5)
+            </code>
+            </li>
+            <li>名字
+            <code>
+              @cname
+            </code>
+            </li>
+          </ul>
+        </div>
+        <div className="column">
+          <ul>
+            <li>
+              url <code>@url</code>
+            </li>
+            <li>
+              email <code>@email</code>
+            </li>
+            <li>
+              城市 <code>@city</code>
+            </li>
+            <li>
+              id <code>@id</code>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
