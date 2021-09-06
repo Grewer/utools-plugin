@@ -10,9 +10,10 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/mockjs": "^1.0.4",
     "vite": "^2.5.1",
     "vite-plugin-solid": "^2.0.3",
-    "@types/mockjs": "^1.0.4"
+    "utools-api-types": "^2.0.6"
   },
   "dependencies": {
     "milligram": "^1.4.1",

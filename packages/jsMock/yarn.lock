@@ -550,6 +550,11 @@
   "resolved" "https://registry.npm.taobao.org/ts-toolbelt/download/ts-toolbelt-9.6.0.tgz"
   "version" "9.6.0"
 
+"utools-api-types@^2.0.6":
+  "integrity" "sha1-WrM4Td8d4cKtk2fuEmjfCLgcZZU="
+  "resolved" "https://registry.nlark.com/utools-api-types/download/utools-api-types-2.0.6.tgz"
+  "version" "2.0.6"
+
 "vite-plugin-solid@^2.0.3":
   "integrity" "sha1-ZiyAXqWTt5NiQ51OFtd8cWwkxAM="
   "resolved" "https://registry.nlark.com/vite-plugin-solid/download/vite-plugin-solid-2.0.3.tgz"
