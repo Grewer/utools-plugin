@@ -1,6 +1,6 @@
 import { Component, createSignal, onMount } from 'solid-js'
-import Mock from 'mockjs'
 import { debounce } from './utils/debounce'
+import Mock from 'mockjs'
 
 // @ts-ignore
 window.Mock = Mock
@@ -16,17 +16,17 @@ const App: Component = () => {
   const [result, setResult] = createSignal('')
   const [input, setInput] = createSignal(template)
 
-  const onChange = debounce(val => {
+  const onChange = debounce((val) => {
     try {
-      const transRes = eval(`Mock.mock(${val})`)
-    ;  // console.log(result)
-      setResult(JSON.stringify(transRes, null, 2))
-    ;} catch (e) {
-      console.log('err?"err?"    ;  setResult(e)
-    ;}
+      const result = eval(`Mock.mock(${val})`)
+     ; // console.log(result)
+      setResult(JSON.stringify(result, null, 2))
+    }; catch (e) {
+      console.log('err?'"err?"    ; setResult(e)
+    };
   }, 300)
 
-  c;onst onInput = ev => {
+  co;nst onInput = (ev) => {
     const val = ev.target?.value
     setInput(val)
     onChange(val)
@@ -38,7 +38,7 @@ const App: Component = () => {
 
   const formatHandle = () => {
     try {
-      setInput(JSON.stringify(eval(`(${input()})`), null, 2));
+      setInput(JSON.stringify(eval("(" + input() + ")"), null, 2));
     } catch (e) {
       console.log('格式化错误', e)
     }
@@ -57,42 +57,45 @@ const App: Component = () => {
   }
 
   return (
-    <div className="container">
+    <div class="container">
       <div className="row">
-        <button onClick={formatHandle} className="button button-clear">
-          格式化输入框
-        </button>
-        <button onClick={resetHandle} className="button button-clear">
-          重置
-        </button>
-        <button onClick={copy} className="button button-clear">
-          复制结果
-        </button>
+        <button onClick={formatHandle} class="button button-clear">格式化输入框</button>
+        <button onClick={resetHandle} class="button button-clear">重置</button>
+        <button onClick={copy} class="button button-clear">复制结果</button>
       </div>
-      <div className="row">
-        <div className="column column-50">
+      <div class="row">
+        <div class="column column-50">
           <textarea value={input()} onInput={onInput} spellcheck autofocus
-                    placeholder={`输入 mock, 如{'boolean|1-2': true}`} id="source" />
+                    placeholder={`输入 mock, 如{'boolean|1-2': true}`}
+                    id="source" />
         </div>
-        <div className="column column-50">
+        <div class="column column-50">
           <textarea readOnly value={result()} />
         </div>
       </div>
-      <h5>常用 mock 模板:</h5>
+      <h5>
+        常用 mock 模板:
+      </h5>
       <div className="row">
         <div className="column">
           <ul>
             <li>
               布尔值
-              <code>@boolean()</code>
+              <code>
+                @boolean()
+              </code>
             </li>
             <li>
               整数
-              <code>@integer(60, 100)</code>
+              <code>
+                @integer(60, 100)
+              </code>
             </li>
             <li>
               长度字符串
-              <code>@string(5)</code>
+              <code>
+                @string(5)
+              </code>
             </li>
           </ul>
         </div>
@@ -100,30 +103,32 @@ const App: Component = () => {
           <ul>
             <li>
               日期
-              <code>@date()</code>
+              <code>
+                @date()
+              </code>
             </li>
-            <li>
-              时间
+            <li>时间
               <code>@time()</code>
             </li>
-            <li>
-              日期时间
+            <li>日期时间
               <code>@datetime()</code>
             </li>
           </ul>
         </div>
         <div className="column">
           <ul>
-            <li>
-              图片 <code>Mock.Random.image()</code>
+            <li>图片 <code>
+              Mock.Random.image()
+            </code></li>
+            <li>语句
+              <code>
+                @csentence(3, 5)
+              </code>
             </li>
-            <li>
-              语句
-              <code>@csentence(3, 5)</code>
-            </li>
-            <li>
-              名字
-              <code>@cname</code>
+            <li>名字
+              <code>
+                @cname
+              </code>
             </li>
           </ul>
         </div>
@@ -147,5 +152,6 @@ const App: Component = () => {
     </div>
   )
 }
+
 
 export default App

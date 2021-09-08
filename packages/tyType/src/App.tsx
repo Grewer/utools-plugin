@@ -2,25 +2,22 @@ import { Component } from 'solid-js'
 
 const App: Component = () => {
   const formatHandle = () => {
-    try {
-      // setInput(JSON.stringify(eval(`(${input()})`), null, 2))
-    } catch (e) {
-      console.log('"格式化错误" e)
-;    }
-  }
-;
+                               try {
+                                 // setInput(JSON.stringify(eval(`(${input()})`), null, 2))
+                               } catch (e) {
+                                 console.log('格式化错误', e)
+                               }
+                             }
   const resetHandle = () => {
     // setInput(template)
     // onChange(template)
   }
-;
   const copy = () => {
     // const res = window.utools?.copyText(result())
     // if (res) {
     //   window.utools?.showNotification('已复制')
     // }
   }
-;
   return (
     <div className="container">
       <div className="row">
@@ -44,6 +41,6 @@ const App: Component = () => {
       </div>
     </div>
   )
-;}
+}
 
-export default App;
+export default App
