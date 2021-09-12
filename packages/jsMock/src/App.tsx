@@ -1,6 +1,6 @@
-import { Component, createSignal, onMount } from 'solid-js'
-import Mock from 'mockjs'
-import { debounce } from './utils/debounce'
+import { Component, createSignal, onMount } from "solid-js";
+import Mock from "mockjs";
+import { debounce } from "./utils/debounce";
 
 // @ts-ignore
 window.Mock = Mock
@@ -20,14 +20,14 @@ const App: Component = () => {
     try {
       // eslint-disable-next-line no-eval
       const _result = eval(`Mock.mock(${val})`)
-    ;  // console.log(result)
+      // console.log(result)
       setResult(JSON.stringify(_result, null, 2))
-    ;} catch (e) {
-      console.log('err?"err?"Result(e))
-    ;}
+    } catch (e) {
+      console.log('err?', setResult(e))
+    }
   }, 300)
 
-  c;onst onInput = ev => {
+  const onInput = ev => {
     const val = ev.target?.value
     setInput(val)
     onChange(val)
@@ -40,7 +40,7 @@ const App: Component = () => {
   const formatHandle = () => {
     try {
       // eslint-disable-next-line no-eval
-      setInput(JSON.stringify(eval(`(${input()})`), null, 2));
+      setInput(JSON.stringify(eval(`(${input()})`), null, 2))
     } catch (e) {
       console.log('格式化错误', e)
     }
