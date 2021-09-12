@@ -1,6 +1,6 @@
-import { Component, createSignal, onMount } from "solid-js";
-import Mock from "mockjs";
-import { debounce } from "./utils/debounce";
+import { Component, createSignal, onMount } from 'solid-js'
+import Mock from 'mockjs'
+import { debounce } from './utils/debounce'
 
 // @ts-ignore
 window.Mock = Mock
@@ -13,6 +13,8 @@ const template = `{
 
 const App: Component = () => {
   console.log('render App')
+
+
   const [result, setResult] = createSignal('')
   const [input, setInput] = createSignal(template)
 
@@ -35,6 +37,9 @@ const App: Component = () => {
 
   onMount(() => {
     onChange(template)
+    window?.utools?.onPluginEnter(({code, type, payload}) => {
+      document.body.className = window?.utools?.isDarkColors() ? 'dark-mode' : ''
+    })
   })
 
   const formatHandle = () => {

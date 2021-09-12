@@ -24,3 +24,20 @@ textarea {
     height: 500px;
     resize: none;
 }
+
+
+.dark-mode {
+    color: white;
+}
+
+.dark-mode textarea {
+    color: white;
+}
+
+.dark-mode button.button {
+    color: white;
+}
+
+.dark-mode li code {
+    background-color: #5c6166
+}
