@@ -16,6 +16,7 @@
     "vite-plugin-solid": "^2.0.3"
   },
   "dependencies": {
+    "milligram": "^1.4.1",
     "solid-js": "^1.1.1"
   },
   "eslintConfig": {
@@ -25,8 +26,7 @@
     "extends": [
       "./node_modules/@grewer/eslint"
     ],
-    "rules": {
-    }
+    "rules": {}
   },
   "eslintIgnore": [
     "!.eslintrc.js",
