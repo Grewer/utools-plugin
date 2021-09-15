@@ -1,6 +1,7 @@
 import { Component, createSignal } from 'solid-js'
+import { debounce } from './utils/debounce'
 
-function getType(data) {
+function getType(data, gap = 0) {
   if (typeof data === 'object') {
     if (typeof data.length !== 'undefined') {
       if (data.length > 0) {
@@ -26,10 +27,12 @@ function getType(data) {
 
 const App: Component = () => {
   const [input, setInput] = createSignal('')
+  const [result, setResult] = createSignal('')
 
   const formatHandle = () => {
     try {
-      // setInput(JSON.stringify(eval(`(${input()})`), null, 2))
+      // eslint-disable-next-line no-eval
+      setInput(JSON.stringify(eval(`(${input()})`), null, 2))
     } catch (e) {
       console.log('格式化错误', e)
     }
@@ -45,17 +48,25 @@ const App: Component = () => {
     // }
   }
 
+  const onChange = debounce(val => {
+    try {
+      // eslint-disable-next-line no-eval
+      const data = eval(`(${val})`)
+      console.log(data)
+      const res = getType(data) // type  string
+      console.log(res)
+      // setResult(res)
+      setResult(res)
+    } catch (e) {
+      console.log('e', e)
+      setResult(e)
+    }
+  }, 300)
+
   const onInput = ev => {
     const val = ev.target?.value
     setInput(val)
-    try {
-      const data = JSON.parse(val)
-      console.log(data)
-      const res = getType(data)
-      console.log(res)
-    } catch (e) {
-      console.error('e', e)
-    }
+    onChange(val)
   }
 
   return (
@@ -77,9 +88,11 @@ const App: Component = () => {
           <textarea value={input()} onInput={onInput} placeholder={`输入 mock, 如{'boolean|1-2': true}`} id="source" />
         </div>
         <div className="column column-50">
-          <textarea readOnly />
+          <textarea value={result()} readOnly />
         </div>
       </div>
+      配置项: object 选择: object, {'{}'} , {`record<any,any>`}
+      array: {`{key:val}[]`} {`Array<{key:val}>`}
     </div>
   )
 }
