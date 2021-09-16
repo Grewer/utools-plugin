@@ -1,5 +1,6 @@
 import { Component, createSignal } from 'solid-js'
 import { debounce } from './utils/debounce'
+import {createStore} from "solid-js/store";
 
 function getType(data, gap = 0) {
   if (typeof data === 'object') {
@@ -28,6 +29,10 @@ function getType(data, gap = 0) {
 const App: Component = () => {
   const [input, setInput] = createSignal('')
   const [result, setResult] = createSignal('')
+  const [state,setState] = createStore({
+    input: '',
+    result: ''
+  })
 
   const formatHandle = () => {
     try {
@@ -91,8 +96,27 @@ const App: Component = () => {
           <textarea value={result()} readOnly />
         </div>
       </div>
-      配置项: object 选择: object, {'{}'} , {`record<any,any>`}
-      array: {`{key:val}[]`} {`Array<{key:val}>`}
+      <div className="row">
+        <div className="column column-33">
+          <fieldset id="group2" onChange={ev=>{
+            console.log(ev.target.value)
+          }}>
+            object 模式:
+            <label><input type="radio" value={1} name="indoor-outdoor"/> object</label>
+            <label><input type="radio" value={2} name="indoor-outdoor"/> {'{}'}</label>
+            <label><input type="radio" value={3} name="indoor-outdoor"/> {`Record<string, unknown>`}</label>
+          </fieldset>
+        </div>
+        <div className="column column-33">
+          <fieldset id="group3" onChange={ev=>{
+            console.log(ev.target.value)
+          }}>
+            array 模式:
+            <label><input type="radio" value={1} name="indoor-outdoor"/> {`{key:val}[]`}</label>
+            <label><input type="radio" value={2} name="indoor-outdoor"/> {`Array<{key:val}>`}</label>
+          </fieldset>
+        </div>
+      </div>
     </div>
   )
 }
