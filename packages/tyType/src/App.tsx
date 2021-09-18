@@ -1,23 +1,23 @@
-import { Component, createSignal } from 'solid-js'
+import { Component } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { debounce } from './utils/debounce'
 import getType from './utils/getType'
 
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-
 const temp = `{}`
 
 const App: Component = () => {
-  console.log('render App')
   const [state, setState] = createStore({
     input: '',
     result: '',
     config: {
-      arrayType: 1,
-      objectType: 1,
+      arrayType: '1',
+      objectType: '1',
     },
   })
+
+  console.log('render App', state)
 
   const formatHandle = () => {
     try {
@@ -58,6 +58,7 @@ const App: Component = () => {
 
     onChange(val)
   }
+  const { config } = state
 
   return (
     <div className="container">
@@ -85,16 +86,16 @@ const App: Component = () => {
         <div className="column column-33">
           <fieldset
             id="group3"
-            onChange={ev => {
-              console.log(ev.target.value)
+            onChange={(ev: Event) => {
+              setState('config', 'arrayType', (ev.target as HTMLOptionElement).value)
             }}
           >
             array 模式:
             <label>
-              <input type="radio" value={1} name="indoor-outdoor" /> {`{key:val}[]`}
+              <input type="radio" checked value={1} name="array" /> {`{key:val}[]`}
             </label>
             <label>
-              <input type="radio" value={2} name="indoor-outdoor" /> {`Array<{key:val}>`}
+              <input type="radio" value={2} name="array" /> {`Array<{key:val}>`}
             </label>
           </fieldset>
         </div>
@@ -102,18 +103,18 @@ const App: Component = () => {
           <fieldset
             id="group2"
             onChange={ev => {
-              console.log(ev.target.value)
+              setState('config', 'objectType', (ev.target as HTMLOptionElement).value)
             }}
           >
             object 模式:
             <label>
-              <input type="radio" value={1} name="indoor-outdoor" /> object
+              <input type="radio" checked value={1} name="object" /> object
             </label>
             <label>
-              <input type="radio" value={2} name="indoor-outdoor" /> {'{}'}
+              <input type="radio" value={2} name="object" /> {'{}'}
             </label>
             <label>
-              <input type="radio" value={3} name="indoor-outdoor" /> {`Record<string, unknown>`}
+              <input type="radio" value={3} name="object" /> {`Record<string, unknown>`}
             </label>
           </fieldset>
         </div>
