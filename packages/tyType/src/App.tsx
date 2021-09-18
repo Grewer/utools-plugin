@@ -52,13 +52,22 @@ const App: Component = () => {
     }
   }, 300)
 
+  // 输入 onInput
   const onInput = ev => {
     const val = ev.target?.value
     setState('input', val)
-
     onChange(val)
   }
-  const { config } = state
+
+  const arrayTypeChange = ev => {
+    setState('config', 'arrayType', (ev.target as HTMLOptionElement).value)
+    onChange(state.input)
+  }
+
+  const objectTypeChange = ev => {
+    setState('config', 'objectType', (ev.target as HTMLOptionElement).value)
+    onChange(state.input)
+  }
 
   return (
     <div className="container">
@@ -84,12 +93,7 @@ const App: Component = () => {
       </div>
       <div className="row">
         <div className="column column-33">
-          <fieldset
-            id="group3"
-            onChange={(ev: Event) => {
-              setState('config', 'arrayType', (ev.target as HTMLOptionElement).value)
-            }}
-          >
+          <fieldset id="group3" onChange={arrayTypeChange}>
             array 模式:
             <label>
               <input type="radio" checked value={1} name="array" /> {`{key:val}[]`}
@@ -100,18 +104,13 @@ const App: Component = () => {
           </fieldset>
         </div>
         <div className="column column-33">
-          <fieldset
-            id="group2"
-            onChange={ev => {
-              setState('config', 'objectType', (ev.target as HTMLOptionElement).value)
-            }}
-          >
+          <fieldset id="group2" onChange={objectTypeChange}>
             object 模式:
             <label>
-              <input type="radio" checked value={1} name="object" /> object
+              <input type="radio" checked value={1} name="object" /> {'{}'}
             </label>
             <label>
-              <input type="radio" value={2} name="object" /> {'{}'}
+              <input type="radio" value={2} name="object" /> object
             </label>
             <label>
               <input type="radio" value={3} name="object" /> {`Record<string, unknown>`}
