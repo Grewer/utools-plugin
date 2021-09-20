@@ -1,4 +1,4 @@
-import { Component } from 'solid-js'
+import { Component, onMount } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { debounce } from './utils/debounce'
 import getType from './utils/getType'
@@ -17,7 +17,13 @@ const App: Component = () => {
     },
   })
 
-  console.log('render App', state)
+  // console.log('render App', state)
+
+  onMount(() => {
+    window?.utools?.onPluginEnter(({ code, type, payload }) => {
+      document.body.className = window?.utools?.isDarkColors() ? 'dark-mode' : ''
+    })
+  })
 
   const formatHandle = () => {
     try {
@@ -71,7 +77,7 @@ const App: Component = () => {
 
   return (
     <div className="container">
-      输入 json, 获取对应的 ts 类型
+      输入 js, 获取对应的 ts 类型
       <div className="row">
         <button type="button" onClick={formatHandle} className="button button-clear">
           格式化输入框
