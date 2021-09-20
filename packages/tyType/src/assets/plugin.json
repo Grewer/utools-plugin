@@ -1,0 +1,16 @@
+{
+  "main": "index.html",
+  "logo": "logo.png",
+  "features": [
+    {
+      "code": "JsToTs",
+      "explain": "输入 JS 数据 自动转换为 TS 类型",
+      "cmds": [
+        "js",
+        "jsToTs",
+        "js2ts",
+        "ts"
+      ]
+    }
+  ]
+}
