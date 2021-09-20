@@ -47,7 +47,7 @@ const App: Component = () => {
       // console.log(res)
       setState('result', res)
     } catch (e) {
-      console.log('e', e)
+      // console.log('e', e)
       setState('result', e)
     }
   }, 300)

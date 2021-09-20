@@ -22,6 +22,26 @@ function getArrayType(type: string, val: any) {
   }
 }
 
+function dynamicArray(arr: any[], gap, config) {
+  return arr.reduce((previousValue, currentValue) => {
+    if (!previousValue.lastType) {
+      previousValue.lastType = typeof currentValue
+      previousValue.immutable = true
+    }
+
+    if (previousValue.lastType === typeof currentValue) {
+      previousValue.push(previousValue.lastType)
+    } else {
+      const type = getType(currentValue, gap + 1, config)
+      previousValue.lastType = type
+      previousValue.push(type)
+      // 不变的
+      previousValue.immutable = false
+    }
+    return previousValue
+  }, [])
+}
+
 function getType(
   data,
   gap = 0,
@@ -37,9 +57,16 @@ function getType(
     if (typeof data.length !== 'undefined') {
       if (data.length > 0) {
         // todo 优化 如果 array 中的类型不一致, 将导出多种类型
-        return getArrayType(config.arrayType, getType(data[0], gap + 1, config))
+        const arrType = dynamicArray(data, gap, config)
+        if (arrType.immutable) {
+          // 如果 immutable 说明是同一种类型
+          return getArrayType(config.arrayType, arrType.lastType)
+        }
+        // 非同一种类型
+        const str = arrType.map(val => `${'  '.repeat(gap + 1)}${val}`).join(',\n')
+        return getArrayType(config.arrayType, `{\n${str}\n${'  '.repeat(gap)}}`)
       }
-      return getArrayType(config.arrayType, 'any')
+      return getArrayType(config.arrayType, 'void')
     }
 
     const keys = Object.keys(data)
