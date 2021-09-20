@@ -53,25 +53,29 @@ function getType(
     objectType: '2',
   }
 ) {
+  const { arrayType, objectType } = config
+
   if (typeof data === 'object') {
     if (typeof data.length !== 'undefined') {
       if (data.length > 0) {
-        // todo 优化 如果 array 中的类型不一致, 将导出多种类型
         const arrType = dynamicArray(data, gap, config)
         if (arrType.immutable) {
           // 如果 immutable 说明是同一种类型
-          return getArrayType(config.arrayType, arrType.lastType)
+          return getArrayType(arrayType, arrType.lastType)
         }
-        // 非同一种类型
+        // 非同一种类型 str = 数组内的所有类型, 并且使用 空格 format
         const str = arrType.map(val => `${'  '.repeat(gap + 1)}${val}`).join(',\n')
-        return getArrayType(config.arrayType, `{\n${str}\n${'  '.repeat(gap)}}`)
+        // 填充类型至 {}[] 中
+        const _type = getArrayType(arrayType, `{\n${str}\n${'  '.repeat(gap)}}`)
+        return _type
       }
-      return getArrayType(config.arrayType, 'void')
+      // 空数组 返回 void[]
+      return getArrayType(arrayType, 'void')
     }
 
     const keys = Object.keys(data)
     if (keys.length === 0) {
-      return getObjectType(config.objectType)
+      return getObjectType(objectType)
     }
     let a = Object.keys(data)
       .map(v => {
