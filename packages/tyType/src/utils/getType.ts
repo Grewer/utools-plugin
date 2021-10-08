@@ -22,14 +22,18 @@ function getArrayType(type: string, val: any) {
   }
 }
 
+function valueType(value) {
+  return value === null ? null : typeof value
+}
+
 function dynamicArray(arr: any[], gap, config) {
   return arr.reduce((previousValue, currentValue) => {
-    if (!previousValue.lastType) {
-      previousValue.lastType = typeof currentValue
+    if (previousValue.lastType === undefined) {
+      previousValue.lastType = valueType(currentValue)
       previousValue.immutable = true
     }
 
-    if (previousValue.lastType === typeof currentValue) {
+    if (previousValue.lastType === valueType(currentValue)) {
       previousValue.push(previousValue.lastType)
     } else {
       const type = getType(currentValue, gap + 1, config)
@@ -56,6 +60,10 @@ function getType(
   const { arrayType, objectType } = config
 
   if (typeof data === 'object') {
+    if (data === null) {
+      return null
+    }
+
     if (typeof data.length !== 'undefined') {
       if (data.length > 0) {
         const arrType = dynamicArray(data, gap, config)
