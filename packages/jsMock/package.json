@@ -18,6 +18,7 @@
     "vite-plugin-solid": "^2.0.3"
   },
   "dependencies": {
+    "less": "^4.1.2",
     "milligram": "^1.4.1",
     "mockjs": "^1.1.0",
     "solid-js": "^1.1.1"

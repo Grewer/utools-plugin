@@ -9,5 +9,5 @@ export default defineConfig({
   },
   assetsInclude: ['logo', 'plugin.json'],
   publicDir: './src/assets/',
-  base: './'
+  base: './',
 })

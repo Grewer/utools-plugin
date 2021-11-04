@@ -37,7 +37,9 @@ const App: Component = () => {
   onMount(() => {
     onChange(template)
     window?.utools?.onPluginEnter(({ code, type, payload }) => {
-      document.body.className = window?.utools?.isDarkColors() ? 'dark-mode' : ''
+      if (window?.utools?.isDarkColors()) {
+        document.body.className = window.utools.isMacOs() ? 'mac-dark-mode' : 'win-dark-mode'
+      }
     })
   })
 
